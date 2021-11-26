@@ -12,6 +12,8 @@ import java.util.Scanner;
 
 public class Citizens extends People implements java.io.Serializable{
     private String IC;
+    private Appointment1 appointment1;
+    private Appointment2 appointment2;
     //Constructor
     public Citizens() {}
     public Citizens(String na, String un, String pw)
@@ -28,8 +30,32 @@ public class Citizens extends People implements java.io.Serializable{
         super(na,un,pw,em,pno,add);
         IC = ic;
     }
+    public Citizens(String na, String em, String pno, String add, String ic, Appointment1 app)
+    {
+        super(na,em,pno,add);
+        IC = ic;
+        appointment1 = app;
+        appointment2 = new Appointment2(null,null);
+    }
+    public Citizens(String na, String em, String pno, String add, String ic, Appointment2 app)
+    {
+        super(na,em,pno,add);
+        IC = ic;
+        appointment2 = app;
+    }
     //Getter
     public String getIC() {return IC;}
+    public Appointment getAppointment1() {return appointment1;}
+    public Appointment getAppointment2() {return appointment2;}
+    //Setter
+    public void setAppointment1(Appointment1 app)
+    {
+        appointment1 = app;
+    }
+    public void setAppointment2(Appointment2 app)
+    {
+        appointment2 = app;
+    }
     //toString Method
     public String toString()
     {
@@ -41,10 +67,11 @@ public class Citizens extends People implements java.io.Serializable{
     }
     public String toString2()
     {
-        return super.toString2() + ";" + IC;
+        return super.toString2() + ";" + IC + ";" + appointment2;
+    }
+    public String toString3()
+    {
+        return super.toString2() + ";" + IC + ";" + appointment1.toString();
     }
 
-    
-    
-    
 }

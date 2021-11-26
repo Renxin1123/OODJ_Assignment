@@ -1,4 +1,8 @@
-Harry;9876543210;selangor;0123456789;harry@gmail.com
-Sun;98415122;penang;1615611;sun@gmail.com
-dfd;dfds;fsgf;sfgdf;adf
-dfd;dafsda;dfsdaf;gdfg;dafds
+Harry;9876543210;selangor;0123456789;harry@gmail.com;1;null;null;null;null;null;null;null;2;null;null;null;null;null;null;null
+Sun;98415122;penang;1615611;sun@gmail.com;1;null;null;null;null;null;null;null;2;null;null;null;null;null;null;null
+dfd;dfds;fsgf;sfgdf;adf;1;null;null;null;null;null;null;null;2;null;null;null;null;null;null;null
+dfd;dafsda;dfsdaf;gdfg;dafds;1;null;null;null;null;null;null;null;2;null;null;null;null;null;null;null
+peter;peter@gmail.com;9415613;KL;6156152;1;11/30/2021;11:30am;001;Stadium_Bukit_Jalil;Jalan_Barat;Phizer;BC007;2;null;null;null;null;null;null;null
+tom;tom@gmail.com;841561564;perak;9156123123;1;12/10/2021;8:00am;002;AMC_Medical_Clinic;Jalan_S2;Sinovac;BC011;2;12/10/20218:00am;001;Stadium_Bukit_Jalil;Jalan_Barat;Phizer;BC007
+joan;joan@gmail.com;6018915623;sabah;92121561212;1;11/27/2021;8:00am;002;AMC_Medical_Clinic;Jalan_S2;Sinovac;BC011;2;null;null;null;null;null;null;null  
+dfd;dfd;fgf;fgf;dfsd;1;null;null;null;null;null;null;null;2;null;null;null;null;null;null;null

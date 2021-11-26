@@ -293,6 +293,7 @@ public class Modify_People extends javax.swing.JFrame {
         
         DefaultTableModel model = (DefaultTableModel)tblPeople.getModel();
         int SelRow = tblPeople.getSelectedRow();
+        System.out.println(SelRow);
         // Display the data from the selected rows into textfield
         txtName.setText(model.getValueAt(SelRow, 0).toString());
         txtICPass.setText(model.getValueAt(SelRow, 1).toString());

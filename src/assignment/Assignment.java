@@ -17,16 +17,8 @@ public class Assignment {
     public static void main(String[] args) {
         // TODO code application logic here
         
-        int n = 9001;
-        int sum = 0;
-        while (n >0)
-        {
-            sum += 9001 %10;
-            n /= 10;
-        }
-        System.out.println(sum);
-        
-         
+        Vaccination_Center vc = new Vaccination_Center();
+        vc.addCenter();
     }
     
 }

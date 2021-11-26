@@ -6,8 +6,12 @@
 package assignment;
 
 import java.io.*;
+import java.util.*;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Scanner;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Collectors;
 
 public class FileOperation {
     //constructor
@@ -20,6 +24,7 @@ public class FileOperation {
         {
             File F1 = new File(file);
             FileWriter fw = new FileWriter(F1,true);
+             
             BufferedWriter bw = new BufferedWriter(fw);
             PrintWriter pw = new PrintWriter(bw);
             pw.println(obj.toString());
@@ -68,15 +73,6 @@ public class FileOperation {
                 //ArrayList
                 AList.add(Sc.next());
                 System.out.println(AList.toString());
-                
-                
-                //String line = Sc.nextLine();
-                //Citizens[] Arr = line.split(";");
-
-                //write to jtable
-                /*if(Arr[0].equals(txtSearch.getText()) || Arr[1].equals(txtSearch.getText()) || 
-                Arr[2].equals(txtSearch.getText()) || Arr[3].equals(txtSearch.getText()) || 
-                        Arr[4].equals(txtSearch.getText()))*/
             }
         }
         catch(FileNotFoundException ex)
@@ -84,7 +80,15 @@ public class FileOperation {
             
         }
         AList.set(SelRow, obj.toString());
-        System.out.println(AList.toString());
+        System.out.println(AList.toString());   
+        
+        for(int i = 0; i <  AList.size(); i++)  
+            {
+                Object[] temp = new Object[100];
+                temp[i] = AList.get(i).toString();
+                System.out.println(temp[i]);
+            }
+   
         try
         {
             File F1 = new File(file);
@@ -93,10 +97,10 @@ public class FileOperation {
             {
                 fw.write(str + System.lineSeparator());
             }
-            /*BufferedWriter bw = new BufferedWriter(fw);
-            PrintWriter pw = new PrintWriter(bw);
-            pw.println(AList.toString());*/
             fw.close();
+            
+            System.out.println("Data Modified Successfully");
+           
         }
         catch(IOException Ex)
         {
