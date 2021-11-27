@@ -5,6 +5,7 @@
  */
 package assignment;
 
+import java.awt.event.KeyEvent;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -60,11 +61,22 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
+        txtPassword.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtPasswordKeyPressed(evt);
+            }
+        });
+
         btnLogin.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
         btnLogin.setText("LOGIN");
         btnLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLoginActionPerformed(evt);
+            }
+        });
+        btnLogin.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btnLoginKeyPressed(evt);
             }
         });
 
@@ -139,15 +151,11 @@ public class Login extends javax.swing.JFrame {
            while(stat == true)
            {
                Person Temp = new Person();
-               System.out.println("hi");
                
                try
                {
                    Temp = (Person)O1.readObject();
-                   System.out.println("hey");    //NORMAL
-                   System.out.println(Temp.getUsername());
-                   System.out.println(Temp.getPassword());
-                   System.out.println(Temp.getUsername().equals(username)); 
+
                    if(Temp.getUsername().equals(username) && Temp.getPassword().equals(password))
                    {
                        System.out.println(Temp.getRole());
@@ -198,6 +206,82 @@ public class Login extends javax.swing.JFrame {
     private void txtUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsernameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtUsernameActionPerformed
+
+    private void btnLoginKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnLoginKeyPressed
+        
+    }//GEN-LAST:event_btnLoginKeyPressed
+
+    private void txtPasswordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPasswordKeyPressed
+        
+        String username = txtUsername.getText();
+        String password = txtPassword.getText();
+        
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER)
+        {
+            Person[] myUsers = new Person[100];
+            int counter = 0;
+            File file = new File("LoginDetails.ser");
+            boolean stat = true;
+        
+            try
+            {
+                FileInputStream f1 = new FileInputStream(file);
+                ObjectInputStream O1 = new ObjectInputStream(f1);
+                while(stat == true)
+                {
+                    Person Temp = new Person();
+               
+                    try
+                    {
+                        Temp = (Person)O1.readObject();
+   
+                    if(Temp.getUsername().equals(username) && Temp.getPassword().equals(password))
+                    {
+                        System.out.println(Temp.getRole());
+                        System.out.println("Valid UserId and Password");
+                        if(Temp.getRole().equals("Admin"))
+                        {
+                            JOptionPane.showMessageDialog(null,"Valid Login");
+                            this.dispose();    //hide the login form after validated
+                            Committee_Home home = new Committee_Home();        //go to another frame
+                            home.setVisible(true);
+                            System.out.println("Valid UserId and Password");
+                        }
+                    }
+                    else
+                    {
+                        JOptionPane.showMessageDialog(null,"InValid Login!!!");
+                        System.out.println("Invalid UserId and Password");
+                    }
+               }
+               catch(ClassNotFoundException Ex)
+               {
+                   
+               }
+               
+               if(Temp!=null)
+               {
+                   myUsers[counter] = Temp;
+                   counter++;
+                   System.out.println(counter);
+               }
+               else
+               {
+                   stat = false;
+               }
+           } 
+           O1.close();
+       }
+       catch(IOException Ex)
+       {
+           
+       }
+       finally
+       {
+           System.out.println("Successfully Login!!!");
+       }
+        }
+    }//GEN-LAST:event_txtPasswordKeyPressed
 
     /**
      * @param args the command line arguments
