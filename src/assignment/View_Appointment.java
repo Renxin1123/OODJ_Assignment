@@ -8,9 +8,11 @@ package assignment;
 import java.io.*;
 import javax.swing.table.DefaultTableModel;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 public class View_Appointment extends javax.swing.JFrame {
 
-    Object[] obj = new Object[15];
+    Object[] obj = new Object[30];
     
     public View_Appointment() {
         initComponents();
@@ -34,11 +36,12 @@ public class View_Appointment extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         txtSearch = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        btnSearch = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 255));
+        jPanel1.setPreferredSize(new java.awt.Dimension(1550, 517));
 
         tblPeople.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         tblPeople.setModel(new javax.swing.table.DefaultTableModel(
@@ -46,7 +49,7 @@ public class View_Appointment extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Name", "Email", "Phone Number", "Address", "IC/Passport No.", "Dose", "Date", "Time", "Vaccination Center Code", "Vaccination Center", "Vaccination Center Address", "Vaccine", "Vaccine Batch"
+                "Name", "Email", "Phone Number", "Address", "IC/Passport No.", "Dose", "Date", "Time", "Center Code", "Center Name", "Center Address", "Vaccine", "Batch", "Dose", "Date", "Time", "Center Code", "Center Name", "Center Address", "Vaccine", "Batch"
             }
         ));
         jScrollPane1.setViewportView(tblPeople);
@@ -76,11 +79,11 @@ public class View_Appointment extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
-        jButton1.setText("Search");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnSearch.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+        btnSearch.setText("Search");
+        btnSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnSearchActionPerformed(evt);
             }
         });
 
@@ -89,43 +92,49 @@ public class View_Appointment extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(82, Short.MAX_VALUE)
+                .addGap(92, 92, 92)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
                     .addComponent(jLabel3))
                 .addGap(48, 48, 48)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(txtSearch, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cmbPeople, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(txtSearch, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cmbPeople, javax.swing.GroupLayout.Alignment.LEADING, 0, 103, Short.MAX_VALUE))
-                        .addGap(275, 275, 275)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnView, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(101, 101, 101))
+                    .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnView, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(128, 128, 128))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 734, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1386, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(549, 549, 549)
+                        .addComponent(jLabel1)))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jLabel1)
-                .addGap(33, 33, 33)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cmbPeople, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2)
-                    .addComponent(btnView))
-                .addGap(30, 30, 30)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(btnView)
+                        .addGap(30, 30, 30)
+                        .addComponent(btnSearch))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(28, 28, 28)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(cmbPeople, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2))
+                        .addGap(30, 30, 30)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(86, 86, 86))
         );
@@ -134,11 +143,11 @@ public class View_Appointment extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1463, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 576, Short.MAX_VALUE)
         );
 
         pack();
@@ -188,61 +197,78 @@ public class View_Appointment extends javax.swing.JFrame {
     }//GEN-LAST:event_btnViewActionPerformed
 
     private void txtSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchActionPerformed
-        // TODO add your handling code here:
+        
+        
     }//GEN-LAST:event_txtSearchActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
         
         DefaultTableModel model = (DefaultTableModel)tblPeople.getModel();
         model.setNumRows(0);
-        
+         
         if(cmbPeople.getSelectedIndex()==0)
         {
-            File file = new File("Citizens.txt");
+            File file = new File("Citizens.txt");     
         
-        try
-        {
-            Scanner Sc = new Scanner(file);
-            while(Sc.hasNext())
+            try
             {
-                String[] line = Sc.nextLine().split(";");
-                if(line[0].equals(txtSearch.getText()) || line[1].equals(txtSearch.getText()) || 
-                line[2].equals(txtSearch.getText()) || line[3].equals(txtSearch.getText()) || 
-                line[4].equals(txtSearch.getText()) || line[5].equals(txtSearch.getText()) || 
-                line[6].equals(txtSearch.getText()) || line[7].equals(txtSearch.getText()) || 
-                line[8].equals(txtSearch.getText()) || line[9].equals(txtSearch.getText()) || 
-                line[10].equals(txtSearch.getText()) || line[11].equals(txtSearch.getText()))
-                {   
-                    // Add data from text file to jtable
-                    obj[0] = line[0];
-                    obj[1] = line[1];
-                    obj[2] = line[2];
-                    obj[3] = line[3];   
-                    obj[4] = line[4];
-                    obj[5] = line[5];
-                    obj[6] = line[6];
-                    obj[7] = line[7];
-                    obj[8] = line[8];   
-                    obj[9] = line[9];
-                    obj[10] = line[10];
-                    obj[11] = line[11];
-                    model.addRow(obj);
-                    
-                    System.out.println("People Found!");
-                }
-                else
+                Scanner Sc = new Scanner(file);
+                while(Sc.hasNext())
                 {
-                    System.out.println("People Not Found!!!");
+                    String[] line = Sc.nextLine().split(";");
+                    
+                    if(line[0].equals(txtSearch.getText()) || line[1].equals(txtSearch.getText()) || 
+                    line[2].equals(txtSearch.getText()) || line[3].equals(txtSearch.getText()) ||
+                    line[4].equals(txtSearch.getText()) || line[5].equals(txtSearch.getText()) || 
+                    line[6].equals(txtSearch.getText()) || line[7].equals(txtSearch.getText()) || 
+                    line[8].equals(txtSearch.getText()) || line[9].equals(txtSearch.getText()) || 
+                    line[10].equals(txtSearch.getText()) || line[11].equals(txtSearch.getText()) || 
+                    line[12].equals(txtSearch.getText()) || line[13].equals(txtSearch.getText()) ||
+                    line[14].equals(txtSearch.getText()) || line[15].equals(txtSearch.getText()) || 
+                    line[16].equals(txtSearch.getText()) || line[17].equals(txtSearch.getText()) || 
+                    line[18].equals(txtSearch.getText()) || line[19].equals(txtSearch.getText()) || 
+                    line[20].equals(txtSearch.getText()))
+                    
+                    model.addRow(line);
                 }
             }
-        }
-        catch(FileNotFoundException fx)
-        {
+            catch(FileNotFoundException ex)
+            {
             
-        }     
+            }   
         }
+        else if(cmbPeople.getSelectedIndex()==1)
+        {
+            File file = new File("NonCitizens.txt");     
         
-    }//GEN-LAST:event_jButton1ActionPerformed
+            try
+            {
+                Scanner Sc = new Scanner(file);
+                while(Sc.hasNext())
+                {
+                    String[] line = Sc.nextLine().split(";");
+                    
+                    if(line[0].equals(txtSearch.getText()) || line[1].equals(txtSearch.getText()) || 
+                    line[2].equals(txtSearch.getText()) || line[3].equals(txtSearch.getText()) ||
+                    line[4].equals(txtSearch.getText()) || line[5].equals(txtSearch.getText()) || 
+                    line[6].equals(txtSearch.getText()) || line[7].equals(txtSearch.getText()) || 
+                    line[8].equals(txtSearch.getText()) || line[9].equals(txtSearch.getText()) || 
+                    line[10].equals(txtSearch.getText()) || line[11].equals(txtSearch.getText()) || 
+                    line[12].equals(txtSearch.getText()) || line[13].equals(txtSearch.getText()) ||
+                    line[14].equals(txtSearch.getText()) || line[15].equals(txtSearch.getText()) || 
+                    line[16].equals(txtSearch.getText()) || line[17].equals(txtSearch.getText()) || 
+                    line[18].equals(txtSearch.getText()) || line[19].equals(txtSearch.getText()) || 
+                    line[20].equals(txtSearch.getText()))
+                    
+                    model.addRow(line);
+                }
+            }
+            catch(FileNotFoundException ex)
+            {
+            
+            }   
+        }
+    }//GEN-LAST:event_btnSearchActionPerformed
 
     /**
      * @param args the command line arguments
@@ -280,9 +306,9 @@ public class View_Appointment extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnSearch;
     private javax.swing.JButton btnView;
     private javax.swing.JComboBox<String> cmbPeople;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

@@ -82,13 +82,54 @@ public class FileOperation {
         AList.set(SelRow, obj.toString());
         System.out.println(AList.toString());   
         
-        for(int i = 0; i <  AList.size(); i++)  
+        /*for(int i = 0; i <  AList.size(); i++)  
             {
                 Object[] temp = new Object[100];
                 temp[i] = AList.get(i).toString();
                 System.out.println(temp[i]);
-            }
+            }*/
    
+        try
+        {
+            File F1 = new File(file);
+            FileWriter fw = new FileWriter(F1,false);
+            for(String str: AList)
+            {
+                fw.write(str + System.lineSeparator());
+            }
+            fw.close();
+            
+            System.out.println("Data Modified Successfully");
+           
+        }
+        catch(IOException Ex)
+        {
+        
+        }
+    }
+    
+    //Remove object from text file
+    public void RemoveFromTextFile(String file, int SelRow)
+    {
+        ArrayList<String> AList = new ArrayList<String>();
+        try
+        {
+            File F1 = new File(file);
+            Scanner Sc = new Scanner(F1);
+            while(Sc.hasNext())
+            {
+                //ArrayList
+                AList.add(Sc.next());
+                System.out.println(AList.toString());
+            }
+        }
+        catch(FileNotFoundException ex)
+        {
+            
+        }
+        
+        AList.remove(SelRow);
+        
         try
         {
             File F1 = new File(file);

@@ -16,9 +16,6 @@ public class Assignment {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        
-        Vaccination_Center vc = new Vaccination_Center();
-        vc.addCenter();
     }
     
 }

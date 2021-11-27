@@ -33,7 +33,7 @@ public class People extends Person{
     //Getter
     public String getEmail() {return Email;}
     public String getPhoneNumber() {return PhoneNumber;}
-    public String Address() {return Address;}
+    public String getAddress() {return Address;}
     
     //toString Method
     public String toString()

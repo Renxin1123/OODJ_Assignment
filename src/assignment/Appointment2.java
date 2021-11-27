@@ -8,6 +8,8 @@ package assignment;
 
 public class Appointment2 extends Appointment1{
     private String dose2;
+    private String AppointmentDate2;
+    private String AppointmentTime2;
     private Vaccination_Center vacCenter;
     public Appointment2(String date1, String time1)
     {
@@ -18,8 +20,8 @@ public class Appointment2 extends Appointment1{
     public Appointment2(String date1, String time1, Vaccination_Center center, String date2, String time2)
     {
         super(date1,time1,center);
-        AppointmentDate = date2;
-        AppointmentTime = time2;
+        AppointmentDate2 = date2;
+        AppointmentTime2 = time2;
         dose2= "2";
         vacCenter = new Vaccination_Center(null,null,null,null,null);
     }
@@ -36,6 +38,6 @@ public class Appointment2 extends Appointment1{
     //toString Method
     public String toString()
     {
-        return super.toString2() + ";" + dose2 + ";" + AppointmentDate + AppointmentTime + ";" + vacCenter;
+        return super.toString2() + ";" + dose2 + ";" + AppointmentDate2 + ";" +  AppointmentTime2 + ";" + vacCenter;
     }
 }

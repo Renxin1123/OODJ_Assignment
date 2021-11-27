@@ -58,10 +58,10 @@ public class Vaccines_Frame extends javax.swing.JFrame {
         jLabel9.setText("5. Search Vaccination Appointment Record ");
 
         jLabel5.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
-        jLabel5.setText("1. Add Vaccination Appointment");
+        jLabel5.setText("1. Add Vaccines");
 
         jLabel6.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
-        jLabel6.setText("2. Remove Vaccination Appointment");
+        jLabel6.setText("2. Remove Vaccines");
 
         jButton5.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         jButton5.setText("Search");
@@ -76,7 +76,7 @@ public class Vaccines_Frame extends javax.swing.JFrame {
         jButton2.setText("Remove");
 
         jLabel7.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
-        jLabel7.setText("3. Modify Vaccination Appointment");
+        jLabel7.setText("3. Modify Vaccines");
 
         jButton3.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         jButton3.setText("Modify");

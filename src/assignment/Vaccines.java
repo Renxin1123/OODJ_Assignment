@@ -23,5 +23,16 @@ public class Vaccines {
     {
         return name + ";" + batch;
     }
-    //public String getDose();
+    //Getter
+    public String getName() {return name;}
+    public String getBatch() {return batch;}
+    //Setter
+    public void setName(String na)
+    {
+        name = na;
+    }
+    public void setBatch(String ba)
+    {
+        batch = ba;
+    }
 }
