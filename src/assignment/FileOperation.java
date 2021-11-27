@@ -152,7 +152,7 @@ public class FileOperation {
     // Write object to ser file
     public void Write2SerFile(String file, Object obj)
     {
-        File F1 = new File(file);
+        /*File F1 = new File(file);
         
         try
         {
@@ -166,6 +166,20 @@ public class FileOperation {
         catch(IOException Ex)
         {
             System.out.println("File error" + Ex.getMessage());
+        }*/
+        
+        try
+        {
+            File F1 = new File("LoginDetails.ser");   //can't see the file, it is not readable in java as plaintext
+            FileOutputStream fos = new FileOutputStream(F1);
+            ObjectOutputStream out = new ObjectOutputStream(fos);
+            out.writeObject(obj);
+            System.out.println("UserData written Successfully");
+            out.close();
+        }
+        catch(IOException Ex)
+        {
+            
         }
     }
     

@@ -5,10 +5,16 @@
  */
 package assignment;
 
-public class Person {
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+
+public class Person implements java.io.Serializable{
     protected String Name;
     protected String Username;
     protected String Password;
+    protected String Role;
     //Constructor
     public Person() {}
     public Person(String na)
@@ -21,10 +27,18 @@ public class Person {
         Username = un;
         Password = pw;
     }
+    public Person(String na, String un, String pw, String role)
+    {
+        Name = na;
+        Username = un;
+        Password = pw;
+        Role = role;
+    }
     //Getter
     public String getName() {return Name;}
     public String getUsername() {return Username;}
     public String getPassword() {return Password;}
+    public String getRole() {return Role;}
     //toString method
     public String toString()
     {

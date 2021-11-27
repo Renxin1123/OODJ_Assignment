@@ -62,6 +62,6 @@ public class NonCitizens extends People implements java.io.Serializable{
     }
     public String toString2()
     {
-        return super.toString() + ";" + PassportNo + ";" + appointment2;
+        return super.toString2() + ";" + PassportNo + ";" + appointment2;
     }
 }

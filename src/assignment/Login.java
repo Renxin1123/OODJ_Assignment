@@ -5,6 +5,12 @@
  */
 package assignment;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.*;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author user
@@ -118,7 +124,75 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        // TODO add your handling code here:
+        
+        String username = txtUsername.getText();
+        String password = txtPassword.getText();
+        Person[] myUsers = new Person[100];
+        int counter = 0;
+        File file = new File("LoginDetails.ser");
+        boolean stat = true;
+        
+        try
+        {
+           FileInputStream f1 = new FileInputStream(file);
+           ObjectInputStream O1 = new ObjectInputStream(f1);
+           while(stat == true)
+           {
+               Person Temp = new Person();
+               System.out.println("hi");
+               
+               try
+               {
+                   Temp = (Person)O1.readObject();
+                   System.out.println("hey");    //NORMAL
+                   System.out.println(Temp.getUsername());
+                   System.out.println(Temp.getPassword());
+                   System.out.println(Temp.getUsername().equals(username)); 
+                   if(Temp.getUsername().equals(username) && Temp.getPassword().equals(password))
+                   {
+                       System.out.println(Temp.getRole());
+                       System.out.println("Valid UserId and Password");
+                       if(Temp.getRole().equals("Admin"))
+                       {
+                            JOptionPane.showMessageDialog(null,"Valid Login");
+                            this.dispose();    //hide the login form after validated
+                            Committee_Home home = new Committee_Home();        //go to another frame
+                            home.setVisible(true);
+                            System.out.println("Valid UserId and Password");
+                       }
+                   }
+                    else
+                    {
+                        JOptionPane.showMessageDialog(null,"InValid Login!!!");
+                        System.out.println("Invalid UserId and Password");
+                    }
+               }
+               catch(ClassNotFoundException Ex)
+               {
+                   
+               }
+               
+               if(Temp!=null)
+               {
+                   myUsers[counter] = Temp;
+                   counter++;
+                   System.out.println(counter);
+               }
+               else
+               {
+                   stat = false;
+               }
+           } 
+           O1.close();
+       }
+       catch(IOException Ex)
+       {
+           
+       }
+       finally
+       {
+           System.out.println("Successfully Login!!!");
+       }
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void txtUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsernameActionPerformed

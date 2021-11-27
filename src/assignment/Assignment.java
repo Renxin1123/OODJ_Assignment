@@ -15,7 +15,11 @@ public class Assignment {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        
+        Person admin = new Person("Admin","admin","admin12345","Admin");
+        
+        FileOperation Fop = new FileOperation();
+        Fop.Write2SerFile("LoginDetails.ser", admin);
     }
     
 }

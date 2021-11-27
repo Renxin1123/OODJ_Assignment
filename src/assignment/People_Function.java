@@ -6,8 +6,10 @@
 package assignment;
 
 import java.io.File;
+import java.io.*;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
+import java.util.*;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -54,6 +56,7 @@ public class People_Function extends javax.swing.JFrame {
         btnRegister = new javax.swing.JButton();
         btnModify = new javax.swing.JButton();
         btnSave = new javax.swing.JButton();
+        btnHome = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -154,6 +157,14 @@ public class People_Function extends javax.swing.JFrame {
             }
         });
 
+        btnHome.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+        btnHome.setText("<< Home");
+        btnHome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHomeActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -161,9 +172,6 @@ public class People_Function extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(44, 44, 44)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1461, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(48, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -217,18 +225,26 @@ public class People_Function extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(btnView, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(btnSearch, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                        .addGap(63, 63, 63))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(488, 488, 488))
+                                            .addComponent(btnSearch, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(btnHome)))
+                        .addGap(63, 63, 63))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(440, 440, 440))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1461, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(48, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(jLabel1)
+                .addGap(23, 23, 23)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel1)
+                    .addComponent(btnHome))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -504,8 +520,18 @@ public class People_Function extends javax.swing.JFrame {
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
         
         DefaultTableModel model = (DefaultTableModel)tblPeople.getModel();
-        int choice = JOptionPane.showOptionDialog(null, "Register for Citizens ??? ", "confirmation", JOptionPane.YES_NO_OPTION, 
+        int choice;
+        if(cmbPeople.getSelectedIndex()==0)
+        {
+            choice = JOptionPane.showOptionDialog(null, "Register for Citizens ??? ", "confirmation", JOptionPane.YES_NO_OPTION, 
                 JOptionPane.INFORMATION_MESSAGE, null, null, null);
+        }
+        else
+        {
+            choice = JOptionPane.showOptionDialog(null, "Register for Non-Citizens ??? ", "confirmation", JOptionPane.YES_NO_OPTION, 
+                JOptionPane.INFORMATION_MESSAGE, null, null, null);
+        }
+        
         Appointment2 app = new Appointment2(null, null);
        
         if(choice==0)
@@ -513,8 +539,8 @@ public class People_Function extends javax.swing.JFrame {
             if(cmbPeople.getSelectedIndex()==0)
             {
                 
-                Citizens C1 = new Citizens(txtName.getText(), txtUsername.getText(), 
-                txtPassword.getText());
+                Person C1 = new Person(txtName.getText(), txtUsername.getText(), 
+                txtPassword.getText(),"Citizen");
             
                 Citizens C2 = new Citizens(txtName.getText(), txtEmail.getText(), 
                     txtPno.getText(), txtAddress.getText(), txtICPass.getText(),app);
@@ -545,17 +571,17 @@ public class People_Function extends javax.swing.JFrame {
 
                 //write to file
                 FileOperation Fop = new FileOperation();
-                Fop.Write2SerFile("LoginDetails.ser", C1.toString1());
+                Fop.Write2SerFile("LoginDetails.ser", C1);
                 Fop.Write2File("Citizens.txt", C2.toString2());
                 //Fop.ReadfromSerFile("LoginDetails.ser", "Citizens");    //error
             }
             else if(cmbPeople.getSelectedIndex()==1)
             {
-                NonCitizens C1 = new NonCitizens(txtName.getText(), txtUsername.getText(), 
-                txtPassword.getText());
+                Person C1 = new Person(txtName.getText(), txtUsername.getText(), 
+                txtPassword.getText(),"NonCitizen");
             
                 NonCitizens C2 = new NonCitizens(txtName.getText(), txtEmail.getText(), 
-                    txtPno.getText(), txtAddress.getText(), txtICPass.getText());
+                    txtPno.getText(), txtAddress.getText(), txtICPass.getText(),app);
                 
                 Object[] obj = new Object[25];
                 obj[0] = C2.getName();
@@ -583,7 +609,7 @@ public class People_Function extends javax.swing.JFrame {
                 
                 //write to file
                 FileOperation Fop = new FileOperation();
-                Fop.Write2SerFile("LoginDetails.ser", C1.toString1());
+                Fop.Write2SerFile("LoginDetails.ser", C1);
                 Fop.Write2File("NonCitizens.txt", C2.toString2());
                 //Fop.ReadfromSerFile("LoginDetails.ser", "Citizens");    //error
             }
@@ -640,6 +666,14 @@ public class People_Function extends javax.swing.JFrame {
         System.out.println("Updated Successfully!");
     }//GEN-LAST:event_btnSaveActionPerformed
 
+    private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
+        
+        JOptionPane.showMessageDialog(null,"Home Page");
+        this.dispose();    //hide the login form after validated
+        Committee_Home home = new Committee_Home();        //go to another frame
+        home.setVisible(true);
+    }//GEN-LAST:event_btnHomeActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -683,6 +717,7 @@ public class People_Function extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnHome;
     private javax.swing.JButton btnModify;
     private javax.swing.JButton btnRegister;
     private javax.swing.JButton btnSave;

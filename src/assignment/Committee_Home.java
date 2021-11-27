@@ -5,6 +5,8 @@
  */
 package assignment;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author user
@@ -45,27 +47,42 @@ public class Committee_Home extends javax.swing.JFrame {
         jLabel1.setText("Home Page");
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
-        jLabel2.setText("jLabel2");
+        jLabel2.setText("Hello admin!!!");
 
         btnPeople.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         btnPeople.setText("People");
+        btnPeople.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPeopleActionPerformed(evt);
+            }
+        });
 
         btnAppointment.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         btnAppointment.setText("Appointment");
+        btnAppointment.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAppointmentActionPerformed(evt);
+            }
+        });
 
         btnVaccines.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         btnVaccines.setText("Vaccines");
+        btnVaccines.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVaccinesActionPerformed(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         jLabel3.setLabelFor(btnPeople);
         jLabel3.setText("1. Manage Citizens/Non-Citizens People");
 
         jLabel4.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
-        jLabel4.setText("2. Manage Vaccination Appointment  for registered people");
+        jLabel4.setText("2. Manage Vaccination Appointment for registered people");
         jLabel4.setToolTipText("");
 
         jLabel5.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
-        jLabel5.setText("3. Supply of Covid19 Vaccines");
+        jLabel5.setText("3. Manage Vaccination Center and The Supply of Covid19 Vaccines");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -74,25 +91,22 @@ public class Committee_Home extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4)
                     .addComponent(jLabel3)
-                    .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                    .addComponent(jLabel5)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jLabel2)
+                        .addComponent(jLabel4)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(btnVaccines, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnAppointment, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE))
                     .addComponent(btnPeople, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(39, 39, 39))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(185, 185, 185)
-                        .addComponent(jLabel1))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(211, 211, 211)
-                        .addComponent(jLabel2)))
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(204, 204, 204))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -131,6 +145,30 @@ public class Committee_Home extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnPeopleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPeopleActionPerformed
+        
+        JOptionPane.showMessageDialog(null,"Manage Citizens/Non-Citizens People ???");
+        this.dispose();    //hide the login form after validated
+        People_Function people = new People_Function();        //go to another frame
+        people.setVisible(true);
+    }//GEN-LAST:event_btnPeopleActionPerformed
+
+    private void btnAppointmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAppointmentActionPerformed
+        
+        JOptionPane.showMessageDialog(null,"Manage Vaccination Appointment for registered people ???");
+        this.dispose();    //hide the login form after validated
+        Appointment_Function appointment = new Appointment_Function();        //go to another frame
+        appointment.setVisible(true);
+    }//GEN-LAST:event_btnAppointmentActionPerformed
+
+    private void btnVaccinesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVaccinesActionPerformed
+        
+        JOptionPane.showMessageDialog(null,"Manage Vaccination Center and The Supply of Covid19 Vaccines ???");
+        this.dispose();    //hide the login form after validated
+        Vaccines_Center vac_Center = new Vaccines_Center();        //go to another frame
+        vac_Center.setVisible(true);
+    }//GEN-LAST:event_btnVaccinesActionPerformed
 
     /**
      * @param args the command line arguments
