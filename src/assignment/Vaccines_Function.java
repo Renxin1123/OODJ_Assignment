@@ -293,23 +293,23 @@ public class Vaccines_Function extends javax.swing.JFrame {
         
         File file = new File("Vaccines.txt");     
         
-            try
+        try
+        {
+            Scanner Sc = new Scanner(file);
+            while(Sc.hasNext())
             {
-                Scanner Sc = new Scanner(file);
-                while(Sc.hasNext())
+                String[] line = Sc.nextLine().split(";");
+                
+                if(line[0].equals(txtSearch.getText()) || line[1].equals(txtSearch.getText()))
                 {
-                    String[] line = Sc.nextLine().split(";");
-                    
-                    if(line[0].equals(txtSearch.getText()) || line[1].equals(txtSearch.getText()))
-                    {
-                        model.addRow(line);
-                    }
+                    model.addRow(line);
                 }
             }
-            catch(FileNotFoundException ex)
-            {
-            
-            }   
+        }
+        catch(FileNotFoundException ex)
+        {
+        
+        }   
     }//GEN-LAST:event_btnSearchActionPerformed
 
     private void btnModifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifyActionPerformed

@@ -19,7 +19,8 @@ public class Assignment {
         Person admin = new Person("Admin","admin","admin12345","Admin");
         
         FileOperation Fop = new FileOperation();
-        Fop.Write2SerFile("LoginDetails.ser", admin);
+        Fop.Write2File("LoginDetails.txt", admin.toString2());
+        //Fop.ReadfromSerFile("LoginDetails.ser");
     }
     
 }

@@ -14,6 +14,6 @@ public class Committee extends Person{
     } 
     public String toString()
     {
-        return super.toString();
+        return super.toString2();
     }
 }

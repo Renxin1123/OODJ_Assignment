@@ -48,4 +48,8 @@ public class Person implements java.io.Serializable{
     {
         return Name;
     }
+    public String toString2()
+    {
+        return Name + ";" + Username + ";" + Password + ";" + Role;
+    }
 }

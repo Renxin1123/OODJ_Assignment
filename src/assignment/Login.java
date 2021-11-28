@@ -10,6 +10,9 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.*;
+import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -139,68 +142,46 @@ public class Login extends javax.swing.JFrame {
         
         String username = txtUsername.getText();
         String password = txtPassword.getText();
-        Person[] myUsers = new Person[100];
-        int counter = 0;
-        File file = new File("LoginDetails.ser");
-        boolean stat = true;
+        File file = new File("LoginDetails.txt"); 
         
         try
         {
-           FileInputStream f1 = new FileInputStream(file);
-           ObjectInputStream O1 = new ObjectInputStream(f1);
-           while(stat == true)
-           {
-               Person Temp = new Person();
-               
-               try
-               {
-                   Temp = (Person)O1.readObject();
-
-                   if(Temp.getUsername().equals(username) && Temp.getPassword().equals(password))
-                   {
-                       System.out.println(Temp.getRole());
-                       System.out.println("Valid UserId and Password");
-                       if(Temp.getRole().equals("Admin"))
-                       {
-                            JOptionPane.showMessageDialog(null,"Valid Login");
-                            this.dispose();    //hide the login form after validated
-                            Committee_Home home = new Committee_Home();        //go to another frame
-                            home.setVisible(true);
-                            System.out.println("Valid UserId and Password");
-                       }
-                   }
-                    else
+            Scanner Sc = new Scanner(file);
+            while(Sc.hasNext())
+            {
+                String[] line = Sc.nextLine().split(";");
+   
+                if(line[1].equals(txtUsername.getText()) || line[2].equals(txtPassword.getText()))
+                {
+                    String name = line[1];
+                    
+                    if(line[3].equals("Admin"))
                     {
-                        JOptionPane.showMessageDialog(null,"InValid Login!!!");
-                        System.out.println("Invalid UserId and Password");
+                        this.dispose();    //hide the login form after validated
+                        Committee_Home home = new Committee_Home();        //go to another frame
+                        home.setVisible(true);
+                        System.out.println("Valid UserId and Password");
                     }
-               }
-               catch(ClassNotFoundException Ex)
-               {
-                   
-               }
-               
-               if(Temp!=null)
-               {
-                   myUsers[counter] = Temp;
-                   counter++;
-                   System.out.println(counter);
-               }
-               else
-               {
-                   stat = false;
-               }
-           } 
-           O1.close();
-       }
-       catch(IOException Ex)
-       {
-           
-       }
-       finally
-       {
-           System.out.println("Successfully Login!!!");
-       }
+                    //else if(Temp.getRole().equals("citizen") ||  Temp.getRole().equals("NonCitizen"))
+                    else if(line[3].equals("Citizen") || line[3].equals("NonCitizen"))
+                    {
+                        System.out.println(name);
+                        this.dispose();    //hide the login form after validated
+                        People_Home home = new People_Home();        //go to another frame
+                        home.setVisible(true);
+                        System.out.println("Valid UserId and Password");
+                    }
+                } 
+                else
+                {
+                    System.out.println("InValid UserId and Password");
+                }
+            }
+        }
+        catch(FileNotFoundException ex)
+        {
+        
+        }
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void txtUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsernameActionPerformed
@@ -218,28 +199,18 @@ public class Login extends javax.swing.JFrame {
         
         if(evt.getKeyCode()==KeyEvent.VK_ENTER)
         {
-            Person[] myUsers = new Person[100];
-            int counter = 0;
-            File file = new File("LoginDetails.ser");
-            boolean stat = true;
-        
+            File file = new File("LoginDetails.txt");
+            
             try
             {
-                FileInputStream f1 = new FileInputStream(file);
-                ObjectInputStream O1 = new ObjectInputStream(f1);
-                while(stat == true)
+                Scanner Sc = new Scanner(file);
+                while(Sc.hasNext())
                 {
-                    Person Temp = new Person();
-               
-                    try
+                    String[] line = Sc.nextLine().split(";");
+                    
+                    if(line[1].equals(username) || line[2].equals(password))
                     {
-                        Temp = (Person)O1.readObject();
-   
-                    if(Temp.getUsername().equals(username) && Temp.getPassword().equals(password))
-                    {
-                        System.out.println(Temp.getRole());
-                        System.out.println("Valid UserId and Password");
-                        if(Temp.getRole().equals("Admin"))
+                        if(line[3].equals("Admin"))
                         {
                             JOptionPane.showMessageDialog(null,"Valid Login");
                             this.dispose();    //hide the login form after validated
@@ -247,39 +218,28 @@ public class Login extends javax.swing.JFrame {
                             home.setVisible(true);
                             System.out.println("Valid UserId and Password");
                         }
+                        //else if(Temp.getRole().equals("citizen") ||  Temp.getRole().equals("NonCitizen"))
+
+                        else if(line[3].equals("Citizen") || (line[3].equals("NonCitizen")))
+                        {
+                            JOptionPane.showMessageDialog(null,"Valid Login");
+                            this.dispose();    //hide the login form after validated
+                            People_Home home = new People_Home();        //go to another frame
+                            home.setVisible(true);
+                            System.out.println("Valid UserId and Password");
+                        }
                     }
                     else
                     {
                         JOptionPane.showMessageDialog(null,"InValid Login!!!");
-                        System.out.println("Invalid UserId and Password");
+                        System.out.println("InValid UserId and Password");
                     }
-               }
-               catch(ClassNotFoundException Ex)
-               {
-                   
-               }
-               
-               if(Temp!=null)
-               {
-                   myUsers[counter] = Temp;
-                   counter++;
-                   System.out.println(counter);
-               }
-               else
-               {
-                   stat = false;
-               }
-           } 
-           O1.close();
-       }
-       catch(IOException Ex)
-       {
-           
-       }
-       finally
-       {
-           System.out.println("Successfully Login!!!");
-       }
+                }
+            }
+            catch(FileNotFoundException ex)
+            {
+            
+            }
         }
     }//GEN-LAST:event_txtPasswordKeyPressed
 

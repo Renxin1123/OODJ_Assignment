@@ -1,0 +1,4 @@
+z;z;z123;Citizen
+y;y;y123;Citizen
+x;x;x123;NonCitizen
+Admin;admin;admin12345;Admin

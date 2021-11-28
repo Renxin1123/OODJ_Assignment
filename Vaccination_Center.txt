@@ -1,4 +1,4 @@
-001;Stadium_Bukit_Jalil;Jalan_Barat;Phizer;BC007
+001;Stadium_Bukit_Jalil;Jalan_Barat;Phizer;BC010
 002;AMC_Medical_Clinic;Jalan_S2;Sinovac;BC011
-003;Hospital_Taiping;Jalan_Taming_Sari;null;null
-004;Hospital_Tuanku_Jaafar;Jalan_Rasah;null;null
+003;Hospital_Taiping;Jalan_Taming_Sari;Phizer;BC010
+004;Hospital_Tuanku_Jaafar;Jalan_Rasah;Sinovac;BC011

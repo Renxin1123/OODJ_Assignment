@@ -538,9 +538,24 @@ public class People_Function extends javax.swing.JFrame {
         {
             if(cmbPeople.getSelectedIndex()==0)
             {
+                String citizen = "Citizen";
+                //Person C1 = new Person(txtName.getText(), txtUsername.getText(), 
+                //txtPassword.getText(),citizen);
                 
                 Person C1 = new Person(txtName.getText(), txtUsername.getText(), 
-                txtPassword.getText(),"Citizen");
+                txtPassword.getText(),citizen);
+                
+                //String name = txtName.getText();
+                //String username = txtUsername.getText();
+                //String password = txtPassword.getText();
+                
+                /*Person P1 = new Person(name, username, password, citizen);
+        
+                FileOperation Fop = new FileOperation();
+                Fop.Write2SerFile("LoginDetails.ser", P1);*/
+                
+                
+                //Person P1 = new Person(txtName.getText(),txtUsername.getText(), txtPassword.getText());
             
                 Citizens C2 = new Citizens(txtName.getText(), txtEmail.getText(), 
                     txtPno.getText(), txtAddress.getText(), txtICPass.getText(),app);
@@ -551,7 +566,7 @@ public class People_Function extends javax.swing.JFrame {
                 obj[2] = C2.getPhoneNumber();
                 obj[3] = C2.getAddress();
                 obj[4] = C2.getIC();
-                obj[5] = "null";
+                obj[5] = "1";
                 obj[6] = "null";
                 obj[7] = "null";
                 obj[8] = "null";
@@ -559,7 +574,7 @@ public class People_Function extends javax.swing.JFrame {
                 obj[10] = "null";
                 obj[11] = "null";
                 obj[12] = "null";
-                obj[13] = "null";
+                obj[13] = "2";
                 obj[14] = "null";
                 obj[15] = "null";
                 obj[16] = "null";
@@ -569,16 +584,25 @@ public class People_Function extends javax.swing.JFrame {
                 obj[20] = "null";
                 model.addRow(obj);
 
+                System.out.println(C1.toString2());
+                System.out.println(C2.toString2());
                 //write to file
                 FileOperation Fop = new FileOperation();
-                Fop.Write2SerFile("LoginDetails.ser", C1);
+                //Fop.Write2SerFile("LoginDetails.ser", P1);
+                Fop.Write2File("LoginDetails.txt", C1.toString2());
                 Fop.Write2File("Citizens.txt", C2.toString2());
                 //Fop.ReadfromSerFile("LoginDetails.ser", "Citizens");    //error
             }
             else if(cmbPeople.getSelectedIndex()==1)
             {
+                String noncitizen = "NonCitizen";
+                //Person C1 = new Person(txtName.getText(), txtUsername.getText(), 
+                //txtPassword.getText(),citizen);
+                
                 Person C1 = new Person(txtName.getText(), txtUsername.getText(), 
-                txtPassword.getText(),"NonCitizen");
+                txtPassword.getText(),noncitizen);
+                /*Person C1 = new Person(txtName.getText(), txtUsername.getText(), 
+                txtPassword.getText(),"NonCitizen");*/
             
                 NonCitizens C2 = new NonCitizens(txtName.getText(), txtEmail.getText(), 
                     txtPno.getText(), txtAddress.getText(), txtICPass.getText(),app);
@@ -589,7 +613,7 @@ public class People_Function extends javax.swing.JFrame {
                 obj[2] = C2.getPhoneNumber();
                 obj[3] = C2.getAddress();
                 obj[4] = C2.getPassportNo();
-                obj[5] = "null";
+                obj[5] = "1";
                 obj[6] = "null";
                 obj[7] = "null";
                 obj[8] = "null";
@@ -597,7 +621,7 @@ public class People_Function extends javax.swing.JFrame {
                 obj[10] = "null";
                 obj[11] = "null";
                 obj[12] = "null";
-                obj[13] = "null";
+                obj[13] = "2";
                 obj[14] = "null";
                 obj[15] = "null";
                 obj[16] = "null";
@@ -609,7 +633,8 @@ public class People_Function extends javax.swing.JFrame {
                 
                 //write to file
                 FileOperation Fop = new FileOperation();
-                Fop.Write2SerFile("LoginDetails.ser", C1);
+                //Fop.Write2SerFile("LoginDetails.ser", C1);
+                Fop.Write2File("LoginDetails.txt", C1.toString2());
                 Fop.Write2File("NonCitizens.txt", C2.toString2());
                 //Fop.ReadfromSerFile("LoginDetails.ser", "Citizens");    //error
             }

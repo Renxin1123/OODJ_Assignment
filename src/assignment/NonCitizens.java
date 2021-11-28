@@ -8,8 +8,8 @@ package assignment;
 
 public class NonCitizens extends People implements java.io.Serializable{
     private String PassportNo;
-    private Appointment1 appointment1;
-    private Appointment2 appointment2;
+    //private Appointment1 appointment1;
+    //private Appointment2 appointment2;
     //Constructor
     public NonCitizens() {}
     public NonCitizens(String na, String un, String pw)
@@ -26,7 +26,20 @@ public class NonCitizens extends People implements java.io.Serializable{
         super(na,un,pw,em,pno,add);
         PassportNo = passport;
     }
-    public NonCitizens(String na, String em, String pno, String add, String passport, Appointment1 app)
+    public NonCitizens(String na, String em, String pno, String add, String pass, Appointment1 app)
+    {
+        super(na,em,pno,add,app);
+        PassportNo = pass;
+        //appointment1 = app;
+        //appointment2 = new Appointment2(null,null);
+    }
+    public NonCitizens(String na, String em, String pno, String add, String pass, Appointment2 app)
+    {
+        super(na,em,pno,add,app);
+        PassportNo = pass;
+        //appointment2 = app;
+    }
+    /*public NonCitizens(String na, String em, String pno, String add, String passport, Appointment1 app)
     {
         super(na,em,pno,add);
         PassportNo = passport;
@@ -37,20 +50,20 @@ public class NonCitizens extends People implements java.io.Serializable{
         super(na,em,pno,add);
         PassportNo = passport;
         appointment2 = app;
-    }
+    }*/
     //Getter
     public String getPassportNo() {return PassportNo;}
-    public Appointment getAppointment1() {return appointment1;}
-    public Appointment getAppointment2() {return appointment2;}
+    //public Appointment getAppointment1() {return appointment1;}
+    //public Appointment getAppointment2() {return appointment2;}
     //Setter
-    public void setAppointment1(Appointment1 app)
+    /*public void setAppointment1(Appointment1 app)
     {
         appointment1 = app;
     }
     public void setAppointment1(Appointment2 app)
     {
         appointment2 = app;
-    }
+    }*/
     //toString Method
     public String toString()
     {
@@ -62,6 +75,10 @@ public class NonCitizens extends People implements java.io.Serializable{
     }
     public String toString2()
     {
-        return super.toString2() + ";" + PassportNo + ";" + appointment2;
+        return super.toString2() + ";" + PassportNo + ";" + super.toString4();
     }
+    /*public String toString2()
+    {
+        return super.toString2() + ";" + PassportNo + ";" + appointment2;
+    }*/
 }

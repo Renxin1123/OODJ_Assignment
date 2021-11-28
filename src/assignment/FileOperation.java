@@ -13,7 +13,7 @@ import java.util.Scanner;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
-public class FileOperation {
+public class FileOperation implements java.io.Serializable{
     //constructor
     public FileOperation(){}
     
@@ -150,11 +150,101 @@ public class FileOperation {
     }
     
     // Write object to ser file
-    public void Write2SerFile(String file, Object obj)
+    public void Write2SerFile(String file1, Person obj)
     {
-        /*File F1 = new File(file);
+        //File F1 = new File(file);
+        ArrayList<Object> AList = new ArrayList<Object>();
+        Person[] myUsers = new Person[100];
+        int counter = 0;
+        File file = new File("LoginDetails");
+        boolean stat = true;
         
         try
+        {
+           FileInputStream f1 = new FileInputStream(file);
+           ObjectInputStream O1 = new ObjectInputStream(f1);
+           while(stat == true)
+           {
+               Person Temp = new Person();
+               
+               try
+               {
+                   Temp = (Person)O1.readObject();
+               }
+               catch(ClassNotFoundException Ex)
+               {
+                   
+               }
+               
+               if(Temp!=null)
+               {
+                   myUsers[counter] = Temp;
+                   counter++;
+                   System.out.println(counter);
+               }
+               else
+               {
+                   stat = false;
+               }
+           }
+           O1.close();
+       }
+       catch(IOException Ex)
+       {
+           
+       }
+       finally
+       {
+           System.out.println("List of Objects that are Deserialized: ");
+           for(int i = 0; i < counter; i++)
+           {
+               System.out.println(myUsers[i].toString());
+               AList.add(myUsers[i]);
+               System.out.println(AList.toString());
+           }
+       } 
+        
+       AList.add(obj); 
+       System.out.println(AList); 
+       for(Object object: AList)
+       {
+           System.out.println(object);
+       }  //normal
+       
+        try
+        {
+            FileOutputStream fos = new FileOutputStream("LoginDetails");
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(AList);
+            oos.close();
+            fos.close();
+            //System.out.println("Successfully");
+        } 
+        catch (IOException ioe) 
+        {
+            ioe.printStackTrace();
+        }
+       /*try
+        {
+            FileOutputStream fos = new FileOutputStream(file,true);
+            ObjectOutputStream out = new ObjectOutputStream(fos);/*{
+                protected void writeStreamHeader() throws IOException{
+                    super.writeStreamHeader();
+                }
+            };
+            out.writeObject(AList);
+            //out.writeObject(obj);
+            System.out.println("UserData written Successfully");
+            //out.flush();
+            out.close();
+            fos.close();
+        }
+        catch(IOException Ex)
+        {
+            
+        }*/
+        
+        /*try
         {
             FileOutputStream fos = new FileOutputStream(F1);
             ObjectOutputStream out = new ObjectOutputStream(fos);
@@ -166,27 +256,29 @@ public class FileOperation {
         catch(IOException Ex)
         {
             System.out.println("File error" + Ex.getMessage());
-        }*/
-        
+        }
+        */
+        /*File F1 = new File(file1);   //can't see the file, it is not readable in java as plaintext
         try
         {
-            File F1 = new File("LoginDetails.ser");   //can't see the file, it is not readable in java as plaintext
+            
             FileOutputStream fos = new FileOutputStream(F1);
             ObjectOutputStream out = new ObjectOutputStream(fos);
             out.writeObject(obj);
             System.out.println("UserData written Successfully");
             out.close();
+            fos.close();
         }
         catch(IOException Ex)
         {
             
-        }
+        }*/
     }
     
     //Read Object from file  //deserialization
-    public void ReadfromSerFile(String file, String Class)               //error
+    public void ReadfromSerFile(String file)               //error
     { 
-        Object[] Demo = new Object[10];
+        Person[] Demo = new Person[100];
         int Counter = 0;
         File F1 = new File(file);
         
@@ -199,21 +291,22 @@ public class FileOperation {
             
             while(Stat)
             {
+                Person Temp = new Person();
                 //Method for deserialization of object
-                Citizens Citizens_Temp = new Citizens();
-                NonCitizens Non_Temp = new NonCitizens();
+                //Citizens Citizens_Temp = new Citizens();
+                //NonCitizens Non_Temp = new NonCitizens();
                 try
                 {
-                    Citizens_Temp = (Citizens)in.readObject();
-                    Non_Temp = (NonCitizens)in.readObject();
+                    Temp = (Person)in.readObject();
+                    //Non_Temp = (NonCitizens)in.readObject();
                 }
                 catch(ClassNotFoundException Ex)
                 {
                     
                 }
-                if(Citizens_Temp!=null && Non_Temp!=null)
+                if(Temp!=null)
                 {
-                    Demo[Counter] = Citizens_Temp;
+                    Demo[Counter] = Temp;
                     System.out.println(Counter);
                     Counter++;
                 }
